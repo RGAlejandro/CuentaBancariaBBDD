@@ -83,7 +83,18 @@ public class Main {
 			break;
 			
 			case "3":
-				
+				dbc=new DbConnection();
+				conn=dbc.getConnection();
+				controler=new CuentaControler(conn);
+				numCuenta="00937684380719959682";
+				try {
+					if(controler.eliminarCuenta(numCuenta)){
+						System.out.println("Libro Eliminado de la BBDD...");
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.getMessage());
+				}
 			break;
 			
 			case "4":

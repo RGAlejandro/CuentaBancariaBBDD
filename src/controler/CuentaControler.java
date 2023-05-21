@@ -30,5 +30,12 @@ public class CuentaControler {
 		return agregado;
 		
 	}
+	public boolean eliminarCuenta(String numCuenta) throws SQLException {
+		boolean eliminado=false;
+		CuentaDao dao=new CuentaDao(conn);
+		eliminado=dao.eliminarCuenta(numCuenta);
+		return eliminado;
+		
+	}
 	
 }

@@ -60,4 +60,14 @@ public class CuentaDao {
 		return agregado;
 		
 	}
+	public boolean eliminarCuenta(String numCuenta) throws SQLException {
+		boolean eliminado=false;
+		String campo="numCuenta";
+		String sql="delete from cuentas where "+campo+" ='"+numCuenta+"'";
+		PreparedStatement pst=conn.prepareStatement(sql);
+		pst.executeUpdate();
+		eliminado=true;
+		return eliminado;
+		
+	}
 }
