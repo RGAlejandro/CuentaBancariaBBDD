@@ -22,5 +22,13 @@ public class CuentaControler {
 		
 		return dao.getCuentas(sql);
 	}
+	public boolean agregarCuenta(String numCuenta, String titular, String dni, String saldo) throws CampoVacioException, DniException, CuentaBancariaException, SQLException {
+		boolean agregado=false;
+		CuentaBancaria cuenta=new CuentaBancaria(numCuenta, titular, dni, saldo);
+		CuentaDao dao=new CuentaDao(conn);
+		agregado=dao.añadirCuenta(cuenta);
+		return agregado;
+		
+	}
 	
 }

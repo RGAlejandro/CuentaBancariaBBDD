@@ -44,6 +44,17 @@ public class CuentaBancaria {
 	}
 
 
+	public CuentaBancaria(String numCuenta, String titular, String dni, String saldo) throws CampoVacioException, DniException, CuentaBancariaException {
+		// TODO Auto-generated constructor stub
+		this.setNumCuenta(numCuenta);
+		this.setTitular(titular);
+		this.setDni(dni);
+		this.setSaldo(saldo);
+		this.fechaOperacion=LocalDate.now();
+		this.bloqueada=false;
+	}
+
+
 	public String getNumCuenta() {
 		return numCuenta;
 	}

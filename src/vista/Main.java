@@ -65,7 +65,21 @@ public class Main {
 			break;
 			
 			case "2":
-				
+				dbc=new DbConnection();
+				conn=dbc.getConnection();
+				controler=new CuentaControler(conn);
+				String numCuenta="00937684380719959682";
+				String titular="Alejandro";
+				String dni="26905231S";
+				String saldo="100";
+				try {
+					if(controler.agregarCuenta(numCuenta,titular,dni,saldo)) {
+						System.out.println("Libro Agregado a la BBDD...");
+					}
+				} catch (CampoVacioException | DniException | CuentaBancariaException | SQLException e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.getMessage());
+				}
 			break;
 			
 			case "3":
@@ -81,7 +95,7 @@ public class Main {
 			break;
 			
 			case "6":
-				
+				sigue=false;
 			break;
 			
 			default:

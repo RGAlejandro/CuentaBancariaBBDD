@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -37,5 +38,26 @@ public class CuentaDao {
 			cuenta=null;
 		}
 		return cuentasBanco;
+	}
+	public boolean añadirCuenta(CuentaBancaria cuenta) throws SQLException {
+		boolean agregado=false;
+		String sql="insert into cuentas values (?,?,?,?,?,?)";
+		String numCuenta=cuenta.getNumCuenta();
+		String titular=cuenta.getTitular();
+		String dni=cuenta.getDni();
+		double saldo=cuenta.getSaldo();
+		Date fechaOperacion=Date.valueOf(cuenta.getFechaOperacion());
+		boolean bloqueada=cuenta.isBloqueado();
+		PreparedStatement pst=conn.prepareStatement(sql);
+		pst.setString(1, numCuenta);
+		pst.setString(2, titular);
+		pst.setString(3, dni);
+		pst.setDouble(4, saldo);
+		pst.setDate(5, fechaOperacion);
+		pst.setBoolean(6, bloqueada);
+		pst.executeUpdate();
+		agregado=true;
+		return agregado;
+		
 	}
 }
