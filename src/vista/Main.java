@@ -74,7 +74,7 @@ public class Main {
 				String saldo="100";
 				try {
 					if(controler.agregarCuenta(numCuenta,titular,dni,saldo)) {
-						System.out.println("Libro Agregado a la BBDD...");
+						System.out.println("Cuenta Agregada a la BBDD...");
 					}
 				} catch (CampoVacioException | DniException | CuentaBancariaException | SQLException e) {
 					// TODO Auto-generated catch block
@@ -89,7 +89,7 @@ public class Main {
 				numCuenta="00937684380719959682";
 				try {
 					if(controler.eliminarCuenta(numCuenta)){
-						System.out.println("Libro Eliminado de la BBDD...");
+						System.out.println("Cuenta Eliminada de la BBDD...");
 					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -101,7 +101,7 @@ public class Main {
 				dbc=new DbConnection();
 				conn=dbc.getConnection();
 				controler=new CuentaControler(conn);
-				sql="select * from cuentas where saldo > 1000";
+				sql="select * from cuentas where saldo < 1000";
 				try {
 					List<CuentaBancaria> cuentas=controler.getCuentas(sql);
 					mostrar(cuentas);
@@ -112,7 +112,18 @@ public class Main {
 			break;
 			
 			case "5":
-				
+				dbc=new DbConnection();
+				conn=dbc.getConnection();
+				controler=new CuentaControler(conn);
+				numCuenta="00937684380719959682";
+				try {
+					if(controler.bloquearCuenta(numCuenta)) {
+						System.out.println("Cuenta Bloqueada de la BBDD");
+					}
+				} catch (SQLException | DniException | CuentaBancariaException | CampoVacioException e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.getMessage());
+				}
 			break;
 			
 			case "6":

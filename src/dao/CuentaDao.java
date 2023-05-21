@@ -70,4 +70,16 @@ public class CuentaDao {
 		return eliminado;
 		
 	}
+	public boolean bloquearCuenta(String numCuenta) throws SQLException {
+		boolean cambiado=false;
+		String sql="Update cuentas Set saldo=? , bloqueada=? where numCuenta=?";
+		PreparedStatement pst=conn.prepareStatement(sql);
+		pst.setDouble(1, 0);
+		pst.setBoolean(2, true);
+		pst.setString(3, numCuenta);
+		pst.executeUpdate();
+		cambiado=true;
+		return cambiado;
+		
+	}
 }

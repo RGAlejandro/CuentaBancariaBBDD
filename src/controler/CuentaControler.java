@@ -37,5 +37,19 @@ public class CuentaControler {
 		return eliminado;
 		
 	}
+	public boolean bloquearCuenta(String numCuenta) throws SQLException, DniException, CuentaBancariaException, CampoVacioException {
+		boolean cambiado=false;
+		CuentaDao dao=new CuentaDao(conn);
+		String campo="numCuenta";
+		String sql="select * from cuentas where "+campo+" ='"+numCuenta+"'";
+		List<CuentaBancaria> cuentas=dao.getCuentas(sql);
+		if(cuentas.size()!=0&&!cuentas.get(0).isBloqueado()) {
+			
+			cambiado=dao.bloquearCuenta(numCuenta);
+			
+		}
+		return cambiado;
+		
+	}
 	
 }
