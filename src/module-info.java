@@ -6,4 +6,5 @@
  *
  */
 module CuentaBancariaBBDD {
+	requires java.sql;
 }

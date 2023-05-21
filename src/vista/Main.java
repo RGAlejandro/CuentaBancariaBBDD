@@ -1,8 +1,11 @@
 package vista;
 
+import java.sql.Connection;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+import controler.CuentaControler;
+import dao.DbConnection;
 import excepciones.CampoVacioException;
 import excepciones.CuentaBancariaException;
 import excepciones.DniException;
@@ -44,7 +47,12 @@ public class Main {
 			opcion=leer.next();
 			switch(opcion) {
 			case "1":
-				
+				Connection conn;
+				DbConnection dbc=new DbConnection();
+				conn=dbc.getConnection();
+				CuentaControler controler=new CuentaControler(conn);
+				String sql="select * from cuentas";
+				controler.getCuentas(sql); 
 			break;
 			
 			case "2":
