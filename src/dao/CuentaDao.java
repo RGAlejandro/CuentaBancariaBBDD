@@ -31,8 +31,8 @@ public class CuentaDao {
 			String dni=rs.getString("dni");
 			double saldo=rs.getDouble("saldo");
 			LocalDate fechaOperacion=rs.getDate("fechaOperacion").toLocalDate();
-			boolean bloqueado=rs.getBoolean("bloqueado");
-			cuenta=new CuentaBancaria(numCuenta, titular, dni, saldo, fechaOperacion, bloqueado);
+			boolean bloqueada=rs.getBoolean("bloqueada");
+			cuenta=new CuentaBancaria(numCuenta, titular, dni, saldo, fechaOperacion, bloqueada);
 			cuentasBanco.add(cuenta);
 			cuenta=null;
 		}

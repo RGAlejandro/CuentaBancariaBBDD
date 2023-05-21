@@ -12,7 +12,7 @@ public class CuentaBancaria {
 	private String dni;
 	private double saldo;
 	private LocalDate fechaOperacion;
-	private boolean bloqueado;
+	private boolean bloqueada;
 	
 
 	public CuentaBancaria() {
@@ -39,7 +39,7 @@ public class CuentaBancaria {
 		this.setDni(dni);
 		this.saldo=saldo;
 		this.fechaOperacion=fechaOperacion;
-		this.bloqueado=bloqueado;
+		this.bloqueada=bloqueado;
 
 	}
 
@@ -199,7 +199,7 @@ public class CuentaBancaria {
 
 
 	public boolean isBloqueado() {
-		return bloqueado;
+		return bloqueada;
 	}
 
 
@@ -208,7 +208,7 @@ public class CuentaBancaria {
 			throw new CampoVacioException();
 		}
 		else {
-			this.bloqueado = Boolean.parseBoolean(bloqueado);
+			this.bloqueada = Boolean.parseBoolean(bloqueado);
 		}
 	}
 
@@ -216,7 +216,7 @@ public class CuentaBancaria {
 	@Override
 	public String toString() {
 		return numCuenta + "," + titular + "," + dni + "," + saldo
-				+ "," + fechaOperacion + "," + bloqueado;
+				+ "," + fechaOperacion + "," + bloqueada;
 	}
 	
 }

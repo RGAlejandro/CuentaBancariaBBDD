@@ -1,7 +1,9 @@
 package vista;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 import controler.CuentaControler;
@@ -25,7 +27,7 @@ public class Main {
 		String dni="26905231-S";
 		String saldo="100";
 		String fechaOperacion="2023-05-20";
-		String bloqueado="true";
+		String bloqueada="true";
 		try {
 			CuentaBancaria cuenta=new CuentaBancaria(numCuenta, titular, dni, saldo, fechaOperacion, bloqueado);
 			System.out.println(cuenta);
@@ -52,7 +54,14 @@ public class Main {
 				conn=dbc.getConnection();
 				CuentaControler controler=new CuentaControler(conn);
 				String sql="select * from cuentas";
-				controler.getCuentas(sql); 
+				try {
+					List<CuentaBancaria> cuentas=controler.getCuentas(sql);
+					mostrar(cuentas);
+				} catch (SQLException | DniException | CuentaBancariaException | CampoVacioException e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.getMessage());
+				} 
+				
 			break;
 			
 			case "2":
@@ -80,6 +89,14 @@ public class Main {
 			break;	
 			}
 		}while(sigue);
+	}
+
+	private static void mostrar(List<CuentaBancaria> cuentas) {
+		// TODO Auto-generated method stub
+		for (CuentaBancaria cb : cuentas) {
+			System.out.println(cb);
+		}
+		
 	}
 
 }
