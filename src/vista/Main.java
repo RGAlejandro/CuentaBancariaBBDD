@@ -98,7 +98,17 @@ public class Main {
 			break;
 			
 			case "4":
-				
+				dbc=new DbConnection();
+				conn=dbc.getConnection();
+				controler=new CuentaControler(conn);
+				sql="select * from cuentas where saldo > 1000";
+				try {
+					List<CuentaBancaria> cuentas=controler.getCuentas(sql);
+					mostrar(cuentas);
+				} catch (SQLException | DniException | CuentaBancariaException | CampoVacioException e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.getMessage());
+				} 
 			break;
 			
 			case "5":
